@@ -39,8 +39,25 @@ CREATE TABLE IF NOT EXISTS etiquetas (
 ALTER TABLE post FOREIGN KEY (usuarios_id) REFERENCES usuarios(usuarios_id);
 
 CREATE TABLE IF NOT EXISTS posts_etiquetas (
-    post_id INTEGER 
+    post_id INTEGER ;
 );
 
 ALTER TABLE posts_etiquetas ADD COLUMN etiquetas_id INT;
 ALTER TABLE posts_etiquetas FOREIGN KEY (usuarios_id) REFERENCES usuarios(usuarios_id);
+
+ALTER TABLE usuarios ADD name VARCHAR (30) NOT NULL;
+ALTER TABLE usuarios ADD apellido VARCHAR (30) NOT NULL;
+ALTER TABLE usuarios DROP COLUMN login;
+ALTER TABLE usuarios ADD empresa VARCHAR(30) NOT NULL;
+ALTER TABLE usuarios ADD telefono INT (10) NOT NULL;
+ALTER TABLE usuarios ADD pais VARCHAR (30) NOT NULL;
+
+ALTER TABLE posts MODIFY COLUMN contenido VARCHAR(250);
+ALTER TABLE usuarios ADD Edad INT (3) NOT NULL CHECK (Edad>=18);
+
+CREATE TABLE IF NOT EXISTS Mensajeria(
+    mensajeria_id INTEGER PRIMARY KEY,
+    emisor INT,
+    receptor VARCHAR(30) NOT NULL,
+    fecha_creacion TIMESTAMP NOT NULL
+);
